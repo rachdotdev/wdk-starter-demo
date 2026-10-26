@@ -1,0 +1,165 @@
+{
+  "engine": "macos-say (Reed (English (US)))",
+  "segments": {
+    "cold-open": {
+      "file": "out/voice/cold-open.aiff",
+      "seconds": 6.38,
+      "text": "Wallet. Swap. Earn. Buy. One app, built on one toolkit."
+    },
+    "intro": {
+      "file": "out/voice/intro.aiff",
+      "seconds": 14.22,
+      "text": "Hi, I'm Emilio, your agent inside WDK, Tether's Wallet Development Kit. This is the WDK Starter Wallet: an open-source React Native app you can fork and make your own."
+    },
+    "architecture": {
+      "file": "out/voice/architecture.aiff",
+      "seconds": 15.73,
+      "text": "Here's the idea. Your app talks to WDK, and WDK runs in its own worklet on the device. That's where the keys live, and they never leave. Every chain and every protocol is a module you plug in."
+    },
+    "w-welcome": {
+      "file": "out/voice/w-welcome.aiff",
+      "seconds": 1.3,
+      "text": "Two phones."
+    },
+    "w-create": {
+      "file": "out/voice/w-create.aiff",
+      "seconds": 2.75,
+      "text": "On the left, a brand-new wallet."
+    },
+    "w-phrase": {
+      "file": "out/voice/w-phrase.aiff",
+      "seconds": 6.1,
+      "text": "Twelve words, generated on the device. We blurred them; never share yours."
+    },
+    "w-password": {
+      "file": "out/voice/w-password.aiff",
+      "seconds": 3.05,
+      "text": "A password encrypts everything locally."
+    },
+    "w-backup": {
+      "file": "out/voice/w-backup.aiff",
+      "seconds": 5.66,
+      "text": "Then back it up, encrypted, to Google Drive or iCloud. Your choice."
+    },
+    "w-import": {
+      "file": "out/voice/w-import.aiff",
+      "seconds": 5.26,
+      "text": "On the right, an existing wallet, imported from its recovery phrase."
+    },
+    "w-imported-balance": {
+      "file": "out/voice/w-imported-balance.aiff",
+      "seconds": 5.95,
+      "text": "The balance is already there: ninety-eight dollars and ninety cents, on testnet."
+    },
+    "w-receive": {
+      "file": "out/voice/w-receive.aiff",
+      "seconds": 4.11,
+      "text": "Left phone: Receive, and copy the address."
+    },
+    "w-send": {
+      "file": "out/voice/w-send.aiff",
+      "seconds": 3.45,
+      "text": "Right phone: send one USDT."
+    },
+    "w-review": {
+      "file": "out/voice/w-review.aiff",
+      "seconds": 6.78,
+      "text": "Look at the fee. Free. Gas is sponsored, thanks to EIP-7702."
+    },
+    "w-sent": {
+      "file": "out/voice/w-sent.aiff",
+      "seconds": 0.89,
+      "text": "Sent."
+    },
+    "w-balances": {
+      "file": "out/voice/w-balances.aiff",
+      "seconds": 3.53,
+      "text": "And both balances update, one dollar over."
+    },
+    "s-home": {
+      "file": "out/voice/s-home.aiff",
+      "seconds": 1.73,
+      "text": "Now, on mainnet."
+    },
+    "s-setup": {
+      "file": "out/voice/s-setup.aiff",
+      "seconds": 3.26,
+      "text": "Let's swap fifty POL for USDT."
+    },
+    "s-quote": {
+      "file": "out/voice/s-quote.aiff",
+      "seconds": 11.53,
+      "text": "In Automatic mode I ask LI.FI, Symbiosis, 0x and Rhino.fi at once, and the best quote wins. This time, it's Symbiosis."
+    },
+    "s-balances": {
+      "file": "out/voice/s-balances.aiff",
+      "seconds": 2.94,
+      "text": "Submitted, and the balances follow."
+    },
+    "b-setup": {
+      "file": "out/voice/b-setup.aiff",
+      "seconds": 6.85,
+      "text": "Same screen, different chain. Fifteen USDT from Polygon to Ethereum."
+    },
+    "b-quote": {
+      "file": "out/voice/b-quote.aiff",
+      "seconds": 7.44,
+      "text": "Zero-x only swaps on one chain, so it sits this one out. LI.FI takes the route."
+    },
+    "b-balances": {
+      "file": "out/voice/b-balances.aiff",
+      "seconds": 3.57,
+      "text": "Fifteen USDT, now on Ethereum."
+    },
+    "e-vaults": {
+      "file": "out/voice/e-vaults.aiff",
+      "seconds": 6.25,
+      "text": "Idle USDT? Put it to work. These are Morpho vaults, with live APY."
+    },
+    "e-deposit": {
+      "file": "out/voice/e-deposit.aiff",
+      "seconds": 2.59,
+      "text": "I'll deposit two USDT."
+    },
+    "e-confirm": {
+      "file": "out/voice/e-confirm.aiff",
+      "seconds": 6.22,
+      "text": "You always see a summary first: approvals, if needed, and gas is sponsored."
+    },
+    "e-withdraw": {
+      "file": "out/voice/e-withdraw.aiff",
+      "seconds": 2.46,
+      "text": "Withdrawing works the same way."
+    },
+    "e-xaut": {
+      "file": "out/voice/e-xaut.aiff",
+      "seconds": 5.76,
+      "text": "And if you hold Tether Gold, you can use it as collateral to borrow USDT."
+    },
+    "p-form": {
+      "file": "out/voice/p-form.aiff",
+      "seconds": 6.19,
+      "text": "Need more USDT? Pick an amount, in euros or dollars, and a network."
+    },
+    "p-quote": {
+      "file": "out/voice/p-quote.aiff",
+      "seconds": 4.93,
+      "text": "Fifty dollars gets about forty-six sixty-five USDT."
+    },
+    "p-transak": {
+      "file": "out/voice/p-transak.aiff",
+      "seconds": 2.98,
+      "text": "Transak handles payment and checks."
+    },
+    "p-credited": {
+      "file": "out/voice/p-credited.aiff",
+      "seconds": 6.43,
+      "text": "This demo runs on Transak's staging environment, so the purchase shows up right away."
+    },
+    "outro": {
+      "file": "out/voice/outro.aiff",
+      "seconds": 11.77,
+      "text": "Wallet, swaps, yield and fiat, all self-custodial. Fork it, swap modules in or out, and ship your own. Build the wallet. Keep the keys."
+    }
+  }
+}

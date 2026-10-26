@@ -1,3 +1,9 @@
 raw/*.mp4
 out/storyboard-bin
+out/roughcut-bin
 out/playbook.json
+out/roughcut.mp4
+out/roughcut-noblur.mp4
+out/cards/*.mp4
+out/voice/*.aiff
+out/voice/*.mp3

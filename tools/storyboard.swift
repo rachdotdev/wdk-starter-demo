@@ -364,6 +364,11 @@ for (i, seg) in segments.enumerated() {
   newCanvas()
   if isCard {
     drawCard(seg)
+    // Clean copy without the storyboard chrome, used by the rough cut.
+    let cards = root.appendingPathComponent("out/cards")
+    try? FileManager.default.createDirectory(at: cards, withIntermediateDirectories: true)
+    try! NSBitmapImageRep(cgImage: ctx.makeImage()!).representation(using: .png, properties: [:])!
+      .write(to: cards.appendingPathComponent("\(s(seg["id"])).png"))
   } else {
     let raw = frame(s(seg["source"]), d(seg["key"]))
     let key = d(seg["key"])

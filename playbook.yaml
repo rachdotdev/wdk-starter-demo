@@ -123,10 +123,10 @@ segments:
     speed: 2
     key: 15
     narration: "Twelve words, generated on the device. We blurred them; never share yours."
-    blur:            # REQUIRED. Keyframes in source time; follow the zoom, verify frame by frame
-      - { from: 8.5,  to: 10.8, rect: [0.15, 0.05, 0.47, 0.95] }   # reveal transition (motion blur)
-      - { from: 10.8, to: 17.2, rect: [0.17, 0.00, 0.56, 0.48] }   # zoomed word grid
-      - { from: 17.2, to: 20.2, rect: [0.17, 0.18, 0.45, 0.58] }   # zoom-out, small grid
+    blur:            # REQUIRED. The recording zooms in and out several times here, so this
+                     # covers the whole left phone for the whole segment (and its hold).
+                     # A tracked mask over just the word grid would be the polished version.
+      - { from: 8.0, to: 20.0, rect: [0.0, 0.0, 0.6, 1.0] }
     overlays:
       - { type: callout, title: "Generated on-device", body: "The recovery phrase never leaves the phone. Blurred for this video.", t: 1.0 }
 

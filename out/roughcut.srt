@@ -1,0 +1,211 @@
+1
+00:00:00,250 --> 00:00:00,888
+Wallet.
+
+2
+00:00:00,888 --> 00:00:01,526
+Swap.
+
+3
+00:00:01,526 --> 00:00:02,165
+Earn.
+
+4
+00:00:02,165 --> 00:00:02,803
+Buy.
+
+5
+00:00:02,803 --> 00:00:06,632
+One app, built on one toolkit.
+
+6
+00:00:08,250 --> 00:00:13,645
+Hi, I'm Emilio, your agent inside WDK, Tether's Wallet Development Kit.
+
+7
+00:00:13,645 --> 00:00:22,473
+This is the WDK Starter Wallet: an open-source React Native app you can fork and make your own.
+
+8
+00:00:23,070 --> 00:00:24,312
+Here's the idea.
+
+9
+00:00:24,312 --> 00:00:30,519
+Your app talks to WDK, and WDK runs in its own worklet on the device.
+
+10
+00:00:30,519 --> 00:00:34,244
+That's where the keys live, and they never leave.
+
+11
+00:00:34,244 --> 00:00:38,797
+Every chain and every protocol is a module you plug in.
+
+12
+00:00:39,400 --> 00:00:40,705
+Two phones.
+
+13
+00:00:41,900 --> 00:00:44,651
+On the left, a brand-new wallet.
+
+14
+00:00:45,250 --> 00:00:48,302
+Twelve words, generated on the device.
+
+15
+00:00:48,302 --> 00:00:51,355
+We blurred them; never share yours.
+
+16
+00:00:51,948 --> 00:00:55,003
+A password encrypts everything locally.
+
+17
+00:00:55,598 --> 00:01:00,317
+Then back it up, encrypted, to Google Drive or iCloud.
+
+18
+00:01:00,317 --> 00:01:01,261
+Your choice.
+
+19
+00:01:04,932 --> 00:01:10,194
+On the right, an existing wallet, imported from its recovery phrase.
+
+20
+00:01:12,348 --> 00:01:18,299
+The balance is already there: ninety-eight dollars and ninety cents, on testnet.
+
+21
+00:01:18,897 --> 00:01:23,007
+Left phone: Receive, and copy the address.
+
+22
+00:01:24,897 --> 00:01:28,351
+Right phone: send one USDT.
+
+23
+00:01:30,897 --> 00:01:33,363
+Look at the fee.
+
+24
+00:01:33,363 --> 00:01:33,980
+Free.
+
+25
+00:01:33,980 --> 00:01:37,679
+Gas is sponsored, thanks to EIP-7702.
+
+26
+00:01:38,277 --> 00:01:39,171
+Sent.
+
+27
+00:01:42,277 --> 00:01:45,811
+And both balances update, one dollar over.
+
+28
+00:01:46,407 --> 00:01:48,133
+Now, on mainnet.
+
+29
+00:01:50,407 --> 00:01:53,669
+Let's swap fifty POL for USDT.
+
+30
+00:01:54,265 --> 00:02:03,602
+In Automatic mode I ask LI.FI, Symbiosis, 0x and Rhino.fi at once, and the best quote wins.
+
+31
+00:02:03,602 --> 00:02:05,800
+This time, it's Symbiosis.
+
+32
+00:02:06,393 --> 00:02:09,336
+Submitted, and the balances follow.
+
+33
+00:02:11,393 --> 00:02:14,132
+Same screen, different chain.
+
+34
+00:02:14,132 --> 00:02:18,240
+Fifteen USDT from Polygon to Ethereum.
+
+35
+00:02:18,842 --> 00:02:24,421
+Zero-x only swaps on one chain, so it sits this one out.
+
+36
+00:02:24,421 --> 00:02:26,280
+LI.FI takes the route.
+
+37
+00:02:26,882 --> 00:02:30,448
+Fifteen USDT, now on Ethereum.
+
+38
+00:02:33,550 --> 00:02:34,512
+Idle USDT?
+
+39
+00:02:34,512 --> 00:02:36,437
+Put it to work.
+
+40
+00:02:36,437 --> 00:02:39,805
+These are Morpho vaults, with live APY.
+
+41
+00:02:40,398 --> 00:02:42,989
+I'll deposit two USDT.
+
+42
+00:02:43,798 --> 00:02:50,021
+You always see a summary first: approvals, if needed, and gas is sponsored.
+
+43
+00:02:52,048 --> 00:02:54,511
+Withdrawing works the same way.
+
+44
+00:02:57,048 --> 00:03:02,807
+And if you hold Tether Gold, you can use it as collateral to borrow USDT.
+
+45
+00:03:05,907 --> 00:03:07,335
+Need more USDT?
+
+46
+00:03:07,335 --> 00:03:12,097
+Pick an amount, in euros or dollars, and a network.
+
+47
+00:03:12,697 --> 00:03:17,623
+Fifty dollars gets about forty-six sixty-five USDT.
+
+48
+00:03:18,225 --> 00:03:21,210
+Transak handles payment and checks.
+
+49
+00:03:28,000 --> 00:03:34,431
+This demo runs on Transak's staging environment, so the purchase shows up right away.
+
+50
+00:03:35,028 --> 00:03:38,463
+Wallet, swaps, yield and fiat, all self-custodial.
+
+51
+00:03:38,463 --> 00:03:43,859
+Fork it, swap modules in or out, and ship your own.
+
+52
+00:03:43,859 --> 00:03:45,331
+Build the wallet.
+
+53
+00:03:45,331 --> 00:03:46,803
+Keep the keys.

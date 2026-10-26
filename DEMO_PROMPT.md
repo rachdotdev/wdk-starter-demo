@@ -395,8 +395,25 @@ segments:
    - The outro shows `github.com/rachdotdev/wdk-starter-demo`.
    - Before the real render, check the blur keyframes frame by frame, or
      replace them with a tracked mask.
-3. Voice generation, then a rough cut (footage plus voice, no overlays) at
-   720p, then **stop for review**.
+3. Voice and rough cut. **Done, with a scratch voice.**
+   - `tools/voice.rb` writes one file per narrated segment to `out/voice/`.
+     - With `ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` set, it uses
+       ElevenLabs, with the voice settings from the playbook.
+     - Without them, it uses the macOS voice "Reed" as a **timing-only
+       scratch track**.
+     - Delete `out/voice/` to regenerate.
+   - `tools/roughcut.swift` (AVFoundation, no ffmpeg needed) assembles
+     `out/roughcut.mp4` at 1280×720:
+     - footage, cards and voice, plus `out/roughcut.srt`;
+     - the recovery-phrase blur is applied;
+     - when a line is longer than its picture, the last frame is held, and
+       `out/ROUGHCUT.md` lists every hold.
+   - With the scratch voice the cut runs 3:49: the planned 3:27 plus 21.5 s of
+     holds. Re-run both tools after recording Emilio's real voice.
+   - Commands:
+     ```bash
+     cd demo && ruby tools/voice.rb && swiftc -O tools/roughcut.swift -o out/roughcut-bin && out/roughcut-bin .
+     ```
 4. Overlays, music, sound effects and captions, then render the 1080p master.
 5. 9:16 cutdowns, SRT, a thumbnail (Emilio and the phone with the swap screen,
    title "Fork a full wallet in minutes"), and a YouTube description with
