@@ -1,0 +1,560 @@
+# WDK Starter Wallet: demo playbook
+#
+# One entry per edited segment, in final order: Wallet → Swap & Bridge → Earn → Buy.
+# Source times are seconds in the raw file (mm:ss in the trailing comment).
+# Output length = (out - in) / speed + hold.
+#
+# Coordinates are normalized to the SOURCE frame: [x, y], with 0,0 at top-left
+# and 1,1 at bottom-right. The source sits centred on a 1920×1080 black stage,
+# scaled to a height of 1080.
+#
+# Overlay types:
+#   chip     WDK module label (monospace), stacked in the side panel
+#   callout  card in the side panel; `target` draws a leader line to a point
+#   badge    pill: success | info | warn
+#   label    free text placed at `at`
+#   counter  before → after value
+#   race     provider quote lanes (status: win | compared | unavailable)
+#   arc      curved arrow from → to, with text
+#   ripple   tap ring at `at`
+#   flow     horizontal chain of steps
+# `t` on an overlay = seconds after the segment starts (output time), for the
+# render. The storyboard shows every overlay at once.
+#
+# Storyboard: `key` is the source time drawn for the segment.
+
+meta:
+  stage: [1920, 1080]
+  fps: 30
+  target_runtime: "3:20"
+  words_per_minute: 160
+
+brand:
+  bg: "#000000"
+  accent: "#FF5A1F"
+  text: "#FFFFFF"
+  muted: "#9A9AA0"
+  success: "#3DDC97"
+  font_sans: "Space Grotesk"   # storyboard falls back to the system font
+  font_mono: "JetBrains Mono"  # storyboard falls back to Menlo
+
+narrator:
+  name: Emilio
+  role: WDK agent
+  image: assets/emilio.webp
+  voice: { provider: elevenlabs, stability: 0.45, similarity: 0.8, style: 0.2, wpm: 160 }
+
+sources:
+  wallet: raw/Starter-wallet-demo.mp4
+  swap: raw/starter_swaps_bridge.mp4
+  earn: raw/starter_earn.mp4
+  buy: raw/starter_pay.mp4
+
+chapters:
+  - { id: open,   title: "WDK Starter Wallet" }
+  - { id: wallet, title: "01 · Your wallet",    tag: "Testnet · Ethereum Sepolia" }
+  - { id: swap,   title: "02 · Swap & bridge",  tag: "Mainnet" }
+  - { id: earn,   title: "03 · Earn",           tag: "Mainnet · Morpho" }
+  - { id: buy,    title: "04 · Buy",            tag: "Transak staging · demo credit" }
+  - { id: outro,  title: "Fork it" }
+
+segments:
+  # ───────────────────────────── OPEN ─────────────────────────────
+  - id: cold-open
+    chapter: open
+    kind: card
+    card: montage
+    duration: 8
+    frames:
+      - { source: wallet, t: 102.3 }   # Free · sponsored
+      - { source: swap, t: 28 }      # Symbiosis quote
+      - { source: earn, t: 8 }       # vault APYs
+      - { source: buy, t: 74 }       # $65.69
+    title: "Wallet. Swap. Earn. Buy."
+    narration: "Wallet. Swap. Earn. Buy. One app, built on one toolkit."
+
+  - id: intro
+    chapter: open
+    kind: card
+    card: emilio
+    duration: 12
+    title: "Emilio"
+    subtitle: "WDK agent"
+    narration: "Hi, I'm Emilio, your agent inside WDK, Tether's Wallet Development Kit. This is the WDK Starter Wallet: an open-source React Native app you can fork and make your own."
+
+  - id: architecture
+    chapter: open
+    kind: card
+    card: architecture
+    duration: 14.5
+    narration: "Here's the idea. Your app talks to WDK, and WDK runs in its own worklet on the device. That's where the keys live, and they never leave. Every chain and every protocol is a module you plug in."
+
+  # ──────────────────────────── WALLET ────────────────────────────
+  - id: w-welcome
+    chapter: wallet
+    source: wallet
+    in: 0.5          # 0:00
+    out: 3.0
+    speed: 1
+    key: 1.5
+    chapter_card: true
+    narration: "Two phones."
+    overlays:
+      - { type: label, text: "New wallet", at: [0.30, 0.06], t: 0.3 }
+      - { type: label, text: "Imported wallet", at: [0.70, 0.06], t: 0.3 }
+
+  - id: w-create
+    chapter: wallet
+    source: wallet
+    in: 5.0          # 0:05
+    out: 8.0
+    speed: 1
+    key: 6.5
+    narration: "On the left, a brand-new wallet."
+    overlays:
+      - { type: ripple, at: [0.31, 0.69], t: 1.2 }
+      - { type: chip, text: "@tetherto/wdk", t: 0.5 }
+
+  - id: w-phrase
+    chapter: wallet
+    source: wallet
+    in: 8.0          # 0:08
+    out: 20.0        # 0:20
+    speed: 2
+    key: 15
+    narration: "Twelve words, generated on the device. We blurred them; never share yours."
+    blur:            # REQUIRED. Keyframes in source time; follow the zoom, verify frame by frame
+      - { from: 8.5,  to: 10.8, rect: [0.15, 0.05, 0.47, 0.95] }   # reveal transition (motion blur)
+      - { from: 10.8, to: 17.2, rect: [0.17, 0.00, 0.56, 0.48] }   # zoomed word grid
+      - { from: 17.2, to: 20.2, rect: [0.17, 0.18, 0.45, 0.58] }   # zoom-out, small grid
+    overlays:
+      - { type: callout, title: "Generated on-device", body: "The recovery phrase never leaves the phone. Blurred for this video.", t: 1.0 }
+
+  - id: w-password
+    chapter: wallet
+    source: wallet
+    in: 20.0         # 0:20
+    out: 37.0        # 0:37
+    speed: 5
+    key: 33
+    narration: "A password encrypts everything locally."
+    overlays:
+      - { type: badge, text: "5× speed", style: info, t: 0 }
+      - { type: callout, title: "Password-protected", body: "Envelope encryption: the keys are locked on the device.", t: 0.8 }
+
+  - id: w-backup
+    chapter: wallet
+    source: wallet
+    in: 38.0         # 0:38
+    out: 47.5
+    speed: 1.5
+    key: 42.5
+    narration: "Then back it up, encrypted, to Google Drive or iCloud. Your choice."
+    overlays:
+      - { type: callout, title: "Encrypted cloud backup", body: "Google Drive or iCloud, on iOS or Android, encrypted with your own password.", t: 0.8 }
+      - { type: chip, text: "@tetherto/wdk-backup-cloud", t: 1.5 }
+
+  - id: w-home-new
+    chapter: wallet
+    source: wallet
+    in: 48.0         # 0:48
+    out: 51.0
+    speed: 1
+    key: 50
+    overlays:
+      - { type: chip, text: "@tetherto/wdk-wallet-btc", t: 0.3 }
+      - { type: chip, text: "@tetherto/wdk-wallet-evm-7702-gasless", t: 0.6 }
+      - { type: badge, text: "Bitcoin · Ethereum · Arbitrum · Polygon", style: info, t: 1.0 }
+
+  - id: w-import
+    chapter: wallet
+    source: wallet
+    in: 54.0         # 0:54
+    out: 59.0
+    speed: 1
+    key: 57
+    narration: "On the right, an existing wallet, imported from its recovery phrase."
+    overlays:
+      - { type: callout, title: "Import", body: "12 or 24 words; paste fills the grid. Already redacted in the recording.", t: 0.8 }
+
+  - id: w-import-password
+    chapter: wallet
+    source: wallet
+    in: 59.0         # 1:00
+    out: 73.5
+    speed: 6
+    key: 66
+    overlays:
+      - { type: badge, text: "6× speed", style: info, t: 0 }
+
+  - id: w-imported-balance
+    chapter: wallet
+    source: wallet
+    in: 74.0         # 1:14
+    out: 79.0
+    speed: 1
+    key: 76
+    narration: "The balance is already there: ninety-eight dollars and ninety cents, on testnet."
+    overlays:
+      - { type: counter, label: "Imported wallet", from: "$0.00", to: "$98.90", t: 0.5 }
+
+  - id: w-receive
+    chapter: wallet
+    source: wallet
+    in: 79.0         # 1:18
+    out: 86.5
+    speed: 1.25
+    key: 83
+    narration: "Left phone: Receive, and copy the address."
+    overlays:
+      - { type: callout, title: "Receive", body: "Pick token and network, then QR code, copy or share.", t: 0.8 }
+
+  - id: w-send
+    chapter: wallet
+    source: wallet
+    in: 87.0         # 1:27
+    out: 99.0
+    speed: 2
+    key: 94
+    narration: "Right phone: send one USDT."
+
+  - id: w-review
+    chapter: wallet
+    source: wallet
+    in: 99.0         # 1:39
+    out: 104.5
+    speed: 1
+    key: 102.3
+    hero: true
+    narration: "Look at the fee. Free. Gas is sponsored, thanks to EIP-7702."
+    overlays:
+      - { type: callout, title: "Network fee: Free", body: "gasless · sponsored (EIP-7702 + paymaster)", target: [0.68, 0.30], t: 0.6 }
+      - { type: chip, text: "@tetherto/wdk-wallet-evm-7702-gasless", t: 1.2 }
+
+  - id: w-sent
+    chapter: wallet
+    source: wallet
+    in: 105.0        # 1:45
+    out: 109.0
+    speed: 1
+    key: 108
+    narration: "Sent."
+    overlays:
+      - { type: badge, text: "Sent · View on Etherscan", style: success, t: 0.4 }
+      - { type: arc, from: [0.71, 0.45], to: [0.29, 0.45], text: "1 USDT", t: 0.8 }
+
+  - id: w-balances
+    chapter: wallet
+    source: wallet
+    in: 119.5        # 1:59.5
+    out: 121.0
+    speed: 1
+    hold: 1.5
+    key: 120.5
+    hero: true
+    narration: "And both balances update, one dollar over."
+    overlays:
+      - { type: counter, label: "New wallet", from: "$0.00", to: "$1.00", t: 0.2 }
+      - { type: counter, label: "Imported wallet", from: "$98.90", to: "$97.90", t: 0.5 }
+
+  # ───────────────────────── SWAP & BRIDGE ─────────────────────────
+  - id: s-home
+    chapter: swap
+    source: swap
+    in: 10.0          # 0:09
+    out: 14.0
+    speed: 1
+    key: 12
+    chapter_card: true
+    narration: "Now, on mainnet."
+    overlays:
+      - { type: chip, text: "@tetherto/wdk-wallet-solana", t: 0.6 }
+      - { type: badge, text: "Send · Swap · Receive · Earn · Buy", style: info, t: 1.0 }
+
+  - id: s-setup
+    chapter: swap
+    source: swap
+    in: 15.0         # 0:15
+    out: 26.5
+    speed: 3
+    key: 24
+    narration: "Let's swap fifty POL for USDT."
+    overlays:
+      - { type: badge, text: "3× speed", style: info, t: 0 }
+
+  - id: s-quote
+    chapter: swap
+    source: swap
+    in: 27.0         # 0:27
+    out: 32.5
+    speed: 1
+    key: 28
+    hero: true
+    narration: "In Automatic mode I ask LI.FI, Symbiosis, 0x and Rhino.fi at once, and the best quote wins. This time, it's Symbiosis."
+    overlays:
+      - type: race
+        title: "Automatic · 50 POL → USDT (Polygon)"
+        t: 0.4
+        lanes:
+          - { name: "Symbiosis", status: win, value: "4.420441 USDT" }
+          - { name: "LI.FI", status: compared }
+          - { name: "0x", status: compared }
+          - { name: "Rhino.fi", status: unavailable, note: "route not supported" }
+      - { type: callout, title: "Best of compared quotes", body: "Min. received 4.376236 USDT", target: [0.35, 0.71], t: 2.0 }
+      - { type: chip, text: "wdk-protocol-swidge-*", t: 0.2 }
+
+  - id: s-submit
+    chapter: swap
+    source: swap
+    in: 33.0         # 0:33
+    out: 40.0
+    speed: 2.5
+    key: 39
+    overlays:
+      - { type: badge, text: "Swap submitted · View on Polygonscan", style: success, t: 2.5 }
+
+  - id: s-balances
+    chapter: swap
+    source: swap
+    in: 46.0         # 0:44
+    out: 51.0
+    speed: 1
+    key: 50
+    narration: "Submitted, and the balances follow."
+    overlays:
+      - { type: counter, label: "POL (Polygon)", from: "56.25", to: "5.80", t: 3.5 }
+      - { type: counter, label: "USDT (Polygon)", from: "11.97", to: "16.39", t: 3.8 }
+
+  - id: b-setup
+    chapter: swap
+    source: swap
+    in: 57.0         # 0:57
+    out: 72.0        # 1:12
+    speed: 3
+    key: 66.5
+    narration: "Same screen, different chain. Fifteen USDT from Polygon to Ethereum."
+    overlays:
+      - { type: badge, text: "3× speed", style: info, t: 0 }
+      - { type: flow, steps: ["Polygon", "Ethereum"], text: "15 USDT", t: 1.5 }
+
+  - id: b-quote
+    chapter: swap
+    source: swap
+    in: 75.0         # 1:15
+    out: 80.5
+    speed: 1
+    key: 76.5
+    hero: true
+    narration: "Zero-x only swaps on one chain, so it sits this one out. LI.FI takes the route."
+    overlays:
+      - type: race
+        title: "Automatic · 15 USDT Polygon → Ethereum"
+        t: 0.4
+        lanes:
+          - { name: "LI.FI", status: win, value: "14.943675 USDT" }
+          - { name: "Symbiosis", status: compared }
+          - { name: "Rhino.fi", status: compared }
+          - { name: "0x", status: unavailable, note: "same-chain only" }
+      - { type: chip, text: "@starter/wdk-protocol-swidge-lifi-gasless", t: 0.2 }
+
+  - id: b-submit
+    chapter: swap
+    source: swap
+    in: 81.0         # 1:21
+    out: 89.0
+    speed: 4
+    key: 87
+    overlays:
+      - { type: badge, text: "Bridge submitted", style: success, t: 2.5 }
+
+  - id: b-balances
+    chapter: swap
+    source: swap
+    in: 92.0         # 1:30
+    out: 99.4
+    speed: 2
+    key: 97
+    hero: true
+    narration: "Fifteen USDT, now on Ethereum."
+    overlays:
+      - { type: counter, label: "USDT (Ethereum)", from: "0.27", to: "15.21", t: 2.5 }
+      - { type: counter, label: "USDT (Polygon)", from: "16.39", to: "1.39", t: 2.8 }
+
+  # ───────────────────────────── EARN ─────────────────────────────
+  - id: e-open
+    chapter: earn
+    source: earn
+    in: 0.5
+    out: 3.0
+    speed: 1
+    key: 1.5
+    chapter_card: true
+    overlays:
+      - { type: ripple, at: [0.536, 0.37], t: 2.2 }
+
+  - id: e-vaults
+    chapter: earn
+    source: earn
+    in: 5.5
+    out: 11.5
+    speed: 1
+    key: 8
+    hero: true
+    narration: "Idle USDT? Put it to work. These are Morpho vaults, with live APY."
+    overlays:
+      - { type: callout, title: "APY 3.03% · 1.72%", body: "sky.money USDT Savings · Risk Capital (at time of recording)", t: 0.8 }
+      - { type: chip, text: "@starter/wdk-protocol-lending-morpho-gasless", t: 0.3 }
+
+  - id: e-deposit
+    chapter: earn
+    source: earn
+    in: 12.0
+    out: 20.5
+    speed: 2.5
+    key: 18
+    narration: "I'll deposit two USDT."
+
+  - id: e-confirm
+    chapter: earn
+    source: earn
+    in: 20.5
+    out: 24.0
+    speed: 1
+    key: 22
+    hero: true
+    narration: "You always see a summary first: approvals, if needed, and gas is sponsored."
+    overlays:
+      - { type: callout, title: "Nothing is sent until you confirm", body: "Deposit 2 USDT into sky.money USDT Savings", target: [0.39, 0.69], t: 0.4 }
+      - { type: badge, text: "Gas is sponsored", style: success, t: 1.2 }
+
+  - id: e-submitted
+    chapter: earn
+    source: earn
+    in: 24.0
+    out: 33.0
+    speed: 4
+    key: 30
+    overlays:
+      - { type: badge, text: "Submitted · Ethereum mainnet", style: success, t: 2.0 }
+
+  - id: e-position
+    chapter: earn
+    source: earn
+    in: 36.0
+    out: 38.5
+    speed: 1
+    key: 37
+    overlays:
+      - { type: counter, label: "Savings deposit", from: "0.10 USDT", to: "2.10 USDT", t: 0.3 }
+
+  - id: e-withdraw
+    chapter: earn
+    source: earn
+    in: 39.0
+    out: 44.0
+    speed: 1
+    key: 43
+    narration: "Withdrawing works the same way."
+
+  - id: e-xaut
+    chapter: earn
+    source: earn
+    in: 57.0
+    out: 63.0
+    speed: 1
+    key: 59
+    narration: "And if you hold Tether Gold, you can use it as collateral to borrow USDT."
+    overlays:
+      - { type: flow, steps: ["XAUt", "Collateral", "Borrow USDT"], t: 0.8 }
+      - { type: badge, text: "Available · not performed in this demo", style: warn, t: 1.6 }
+
+  # ───────────────────────────── BUY ─────────────────────────────
+  - id: p-open
+    chapter: buy
+    source: buy
+    in: 0.5
+    out: 3.0
+    speed: 1
+    key: 1.5
+    chapter_card: true
+    overlays:
+      - { type: ripple, at: [0.576, 0.37], t: 2.2 }
+
+  - id: p-form
+    chapter: buy
+    source: buy
+    in: 3.0
+    out: 15.0
+    speed: 2.25
+    key: 9.5
+    narration: "Need more USDT? Pick an amount, in euros or dollars, and a network."
+    overlays:
+      - { type: badge, text: "EUR · USD  ·  Ethereum · Arbitrum · Polygon", style: info, t: 1.0 }
+
+  - id: p-quote
+    chapter: buy
+    source: buy
+    in: 15.0
+    out: 20.0
+    speed: 1
+    key: 17
+    hero: true
+    narration: "Fifty dollars gets about forty-six sixty-five USDT."
+    overlays:
+      - { type: callout, title: "You receive about 46.65 USDT", body: "for 50 USD · fee 3.35 USD", t: 0.5 }
+      - { type: chip, text: "@transak/wdk-protocol-fiat-transak", t: 0.2 }
+
+  - id: p-transak
+    chapter: buy
+    source: buy
+    in: 32.5
+    out: 46.0
+    speed: 2.5
+    key: 40
+    narration: "Transak handles payment and checks."
+    overlays:
+      - { type: flow, steps: ["50 USD", "Transak", "46.65 USDT", "Your wallet"], t: 0.8 }
+
+  - id: p-processing
+    chapter: buy
+    source: buy
+    in: 46.0
+    out: 57.0
+    speed: 8
+    key: 50
+    overlays:
+      - { type: badge, text: "8× speed", style: info, t: 0 }
+
+  - id: p-status
+    chapter: buy
+    source: buy
+    in: 57.0
+    out: 69.0
+    speed: 4
+    key: 63
+
+  - id: p-credited
+    chapter: buy
+    source: buy
+    in: 71.0
+    out: 77.6
+    speed: 1
+    key: 74
+    hero: true
+    narration: "This demo runs on Transak's staging environment, so the purchase shows up right away."
+    overlays:
+      - { type: counter, label: "Total balance", from: "$19.08", to: "$65.69", target: [0.50, 0.26], t: 0.5 }
+      - { type: badge, text: "Staging · demo credit, not on-chain", style: warn, t: 1.2 }
+
+  # ───────────────────────────── OUTRO ─────────────────────────────
+  - id: outro
+    chapter: outro
+    kind: card
+    card: outro
+    duration: 14
+    title: "Fork the starter"
+    lines:
+      - "github.com/rachdotdev/wdk-starter-demo"
+      - "docs.wdk.tether.io"
+    footnote: "Alpha software · testnets and small mainnet amounts"
+    narration: "Wallet, swaps, yield and fiat, all self-custodial. Fork it, swap modules in or out, and ship your own. Build the wallet. Keep the keys."
